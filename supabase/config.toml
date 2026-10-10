@@ -1,0 +1,4 @@
+project_id = "qigunxphogpzmskjjkaa"
+
+[functions.analyze-threat]
+verify_jwt = false

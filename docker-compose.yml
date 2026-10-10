@@ -1,0 +1,13 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: tracechain
+      POSTGRES_PASSWORD: tracechain
+      POSTGRES_DB: tracechain_in
+    ports:
+      - "5432:5432"
+    volumes:
+      - tracechain_postgres:/var/lib/postgresql/data
+volumes:
+  tracechain_postgres:

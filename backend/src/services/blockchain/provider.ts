@@ -1,0 +1,5 @@
+/** Provider boundary: live adapters are selected only when their environment configuration is present. */
+export interface BlockchainProvider { readonly chain: string; getWalletBalance(address: string): Promise<string>; getTransactions(address: string): Promise<unknown[]>; getTokenTransfers(address: string): Promise<unknown[]>; getTransaction(hash: string): Promise<unknown | null>; getBlockTimestamp(block: string): Promise<Date>; }
+export class DemoEthereumProvider implements BlockchainProvider { readonly chain = "Ethereum"; async getWalletBalance() { return "2.84 ETH"; } async getTransactions() { return [{ transactionHash:"0xD3MO0001", synthetic:true }]; } async getTokenTransfers() { return []; } async getTransaction(hash:string) { return { transactionHash:hash, synthetic:true }; } async getBlockTimestamp() { return new Date("2026-09-07T10:21:00Z"); } }
+export class EthereumProvider extends DemoEthereumProvider { readonly chain = "Ethereum"; /* TODO: inject an RPC client; no API key is embedded in source. */ }
+export class BitcoinProvider extends DemoEthereumProvider { readonly chain = "Bitcoin"; }
